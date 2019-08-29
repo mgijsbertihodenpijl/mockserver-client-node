@@ -45,6 +45,9 @@ module.exports = function (grunt) {
             with_proxy: [
                 'test/with_proxy/*_test.js'
             ],
+            with_https: [
+                'test/with_https/*_test.js'
+            ],
             options: {
                 reporter: 'nested'
             }
@@ -78,6 +81,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test_node', ['start_mockserver', 'nodeunit', 'stop_mockserver']);
     grunt.registerTask('test_browser', ['start_mockserver', 'karma:chrome', 'stop_mockserver']);
     grunt.registerTask('test', ['start_mockserver', 'nodeunit', 'karma:chrome', 'stop_mockserver']);
+    grunt.registerTask('testhttps', ['start_mockserver', 'nodeunit:with_https', 'stop_mockserver']);
 
     grunt.registerTask('default', ['exec:stop_existing_mockservers', 'jshint', 'test_node']);
 };
